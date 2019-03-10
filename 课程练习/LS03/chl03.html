@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var num1 = 20;
+	num1.toFixed(2);
+	//保留两位小数，超出特定位置的四舍五入，返回的是字符串
+
+	var num1 = 20;
+	var numobject = new Number(num1);
+	console.log(numobject);
+	numobject.toFixed();
+	
+	var num2 = 12345.6789;
+	num2.toPrecision(1);
+	//toPrecision（数字为个数）四舍五入
+	//数字位个数小于数字的整数位时，表示成指数形式
+	//大于或等于数字的整数位的时候，直接四舍五入截取
+	
+	"lasdfh".charAt(3);
+
+	String.fromCharCode(97,98,99);
+
+	var str = "abcdefghijk";
+	str.charCodeAt(0);
+	str.slice(0,3);
+	str.slice(0,-1);
+	//slice(截取的开始位置，截取的结束位置)
+	//如果截取的结束位置小于0的，结束位置为str.length + 截取结束参数（倒着数）
+	
+	str.substr(0,3);
+	//第二个参数表示截取长度，截取长度可以缺省，表示从起始位置到字符串的结束位置
+	str.substring(5);
+	//substring(截取起始位置，截取结束位置)
+	//如果截取起始位置值》截取结束位置值，两者互换
+	//超出0 -str.length范围的，会被截断
+	
+	str.split();
+	//split(分隔符号，限定生成数组的长度)
+	
+	var s = "          ab       c";
+	s.trim();
+
+	var str1 = "abc";
+	str1.concat("def","ghi");
+
+	toLowerCase toUpperCase
+
+	//indexof（查找的特定字符，查找的起始位置）返回值的字符串出现的索引位置。查找不到返回-1
+	
+	//正则表达式
+	
+	//Boolean只要是对象就是true,不管是不是空；如果是null则为false
+	//
+</script>
+</html>

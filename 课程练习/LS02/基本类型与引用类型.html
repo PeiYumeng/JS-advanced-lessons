@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ch2基本类型与引用类型</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var a = 20;
+	var b = a;
+	a=10;
+	console.log(b);
+
+	var obj1 = {"username":"zhangsan"};
+	var obj2 = obj1;
+	obj2.username = "lisi";
+	console.log(obj1);
+
+	var arr1 = [1,2,3,4,5];
+	var arr2 = arr1;
+	arr2[0]=6;
+	console.log(arr1);
+
+	//深拷贝与浅拷贝
+	var obj3 = {"username":"zhangsan"};
+	var obj4 = {};
+	var username = obj3.username;
+	obj4.username = username;
+	console.log(obj3);
+	console.log(obj4);
+
+	var obj5 = {};
+	var obj6 = {};
+	console.log(obj5==obj6);
+	//两个等号判断的是值，三个等号是先判断类型再判断值
+	//对象的话是判断存储的地址是否相同
+	
+	var a = 6;
+	function fn1(x){
+		x=5;
+	}
+	fn1(a);
+	console.log(a);
+
+	var obj7 = {"username":"zhangsan"};
+	function fn1(x){
+		x.username = "lisi";
+	}
+	fn1(obj7);
+	console.log(obj7);
+
+	//数组isNaN 是否是一个数值
+
+	var str = "ab_cd_ef";
+	str.slice(0,3);
+	str.slice(0,-1);
+	str.split("_");
+	//str.slice截取字符串起始位置，截取字符串结束位置
+	//负数可以从反方向计算索引
+	//str.split分隔符 以特定的分隔符来进行分割子字符串
+	//将字符串作为数组的数组元素，生成一个数组
+	
+	//装箱
+	var str0 = "abcdef";
+	var strObject = new String(str0);
+
+
+	console.log(x)
+</script>
+</html>
