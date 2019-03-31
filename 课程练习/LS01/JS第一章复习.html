@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//ECMAScript是JavaScript的语法标准，但实际上是ECMA-262标准的实现和扩展
+	//JavaScript由NetScape网景公司创建，后与Sun合作取名JavaScript,蹭JAVA热度得名，后与微软合作
+	/*
+	语言特点：
+	1.直译式脚本语言，在宿主（浏览器）中解释执行
+	2.是一种弱类型、动态类型的语言。不用给变量具体声明数据类型，并且可以动态的改变
+	3.ES5没有块作用域、闭包等
+	4.借鉴了其他语言
+	*/
+	//用src连接外部JS代码
+
+	//最好避免使用全局变量，防止滥用污染
+	var x = 10;
+	document.onclick = function () {
+		console.log("x = ",x);
+		alert("x = "+x);
+	}//输出10，使用的是全局变量
+	//避免全局污染，使用IIFE函数立即执行表达式（括起来）
+	
+
+</script>
+</html>
