@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //将每一个都放进来调用一次callback
+    var arr1 = [1,2,3];
+    arr1.forEach(function(value,index,arr){
+        //value是必须参数
+        console.log(value,index,arr);
+    })
+    //相当于遍历了一遍，对数组每个元素进行了一遍操作
+    //value是值，index是索引，从零开始的，数组就是定义的那个
+    /*
+        arr.forEach(callback,thisArg)
+        callback是针对数组的每个数组元素所应用的回调函数
+    */
+    var arr1 = ['a','b','c'];
+    
+    var arr1 = [10,20,30,40];
+    var result = arr1.every(function(value){
+        return value > 20;
+    });
+    console.log(result);
+
+
+
+    Array.prototype.filterspace = function(){
+        
+    }
+</script>
+</html>

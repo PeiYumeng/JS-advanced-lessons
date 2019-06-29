@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            font:bolder 26px 楷体;
+        }
+        #result {
+            text-align:right;
+        }
+        table,td {
+            border:1px solid #C0C0C0;
+        }
+        td {
+            padding:10px;
+        }
+        button {
+            width:50px;
+            height:50px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="3" id="result">
+                0
+            </td>
+            <td>
+                <button type="button" value="C">
+                    C
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="1" >
+                    1
+                </button>
+            </td>
+            <td>
+                <button type="button" value="2">
+                    2
+                </button>
+            </td>
+            <td>
+                <button type="button" value="3">
+                    3
+                </button>
+            </td>
+            <td>
+                <button type="button" value="+">
+                    +
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="4">
+                    4
+                </button>
+            </td>
+            <td>
+                <button type="button" value="5">
+                    5
+                </button>
+            </td>
+            <td>
+                <button type="button" value="6">
+                    6
+                </button>
+            </td>
+            <td>
+                <button type="button" value="-">
+                    -
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="7">
+                    7
+                </button>
+            </td>
+            <td>
+                <button type="button" value="8">
+                    8
+                </button>
+            </td>
+            <td>
+                <button type="button" value="9">
+                    9
+                </button>
+            </td>
+            <td>
+                <button type="button" value="*">
+                    *
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="0">
+                    0
+                </button>
+            </td>
+            <td>
+                <button type="button" value=".">
+                    .
+                </button>
+            </td>
+            <td>
+                <button type="button" value="=">
+                    =
+                </button>
+            </td>
+            <td>
+                <button type="button" value="/">
+                    /
+                </button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script src = "jquery-3.4.1.min.js"></script>
+<script>
+    var rel = 0;//计算结果 全局变量
+    var fuhao;//每次点的符号
+    var num1;//要连接的前半部分
+    var r1;//记录一下第一个按下的数字
+    var cc;
+    //鼠标划上的时候有阴影效果
+    $(":button").mousemove(function(){
+        $(this).css("box-shadow","3px 3px 3px #eee");
+    })
+    $(":button").mouseout(function(){
+        $(this).css("box-shadow","0px 0px 0px #eee");
+    })
+    //获得数字
+    $("button").click(function(){
+        var a = $(this).val();
+        if(a!='C' && a!='+' && a!='-' && a!='*' && a!='/' && a!='='){
+            console.log($("#result").html());//当前的 0
+            console.log(a);//3
+            var ed = $("#result").html();
+            if(ed == 0){
+                r1 = parseInt(a);
+                rel = r1;
+                $("#result").html(a);
+            }
+            else{
+                $("#result").html(ed+a);
+            }
+        }
+    })
+    //显示加减乘除
+    $(":button").click(function(){
+        var a = $(this).val();
+        var ed = $("#result").html();
+        if(a == '+'){
+            if(ed ){
+                $("#result").html(ed+a);
+            }
+        }
+    })  
+    //减法
+    $(":button").click(function(){
+        var a = $(this).val();
+        var ed = $("#result").html();
+        if(a == '-'){
+            if(ed ){
+                $("#result").html(ed+a);
+            }
+        }
+    })  
+    //乘法
+    $(":button").click(function(){
+        var a = $(this).val();
+        var ed = $("#result").html();
+        if(a == '*'){
+            if(ed ){
+                $("#result").html(ed+a);
+            }
+        }
+    })  
+    //除法
+    $(":button").click(function(){
+        var a = $(this).val();
+        var ed = $("#result").html();
+        if(a == '/'){
+            if(ed ){
+                $("#result").html(ed+a);
+            }
+        }
+    }) 
+    //等于
+    $(":button").click(function(){
+        var a = $(this).val();
+        var ed = $("#result").html();
+        var length;
+        if(ed.length%2==0){
+            length = ed.length/2;
+        }
+        else{
+            length = ed.length/2 - 0.5;
+        }
+        var n;
+
+        if(a == '='){
+            bianliang = ed;
+            for(var k=0;k<length;k++){//为了连续多个运算符运算
+                console.log(bianliang);
+                var jia = bianliang.indexOf("+");
+                var jian = bianliang.indexOf("-");
+                var cheng = bianliang.indexOf("*");
+                var chu = bianliang.indexOf("/");
+                if(jia == 1){//找第一个出现的运算符
+                    fuhao = '+';
+                }
+                if(jian == 1){
+                    fuhao = '-';
+                }
+                if(cheng == 1){
+                    fuhao = '*';
+                }
+                if(chu == 1){
+                    fuhao = '/';
+                }
+                else{
+                    var aaa=[];
+                    var xy = [jia,jian,cheng,chu];
+                    for(var x=0;x<4;x++){
+                        if(xy[x]>0){
+                            aaa.push(xy[x]);
+                        }
+                    }
+                    var min = aaa[0];
+                    for(var x = 1;x<aaa.length;a++){
+                        var cur = aaa[x];
+                        cur < min ? min = cur : null;
+                    }
+                    var bb = bianliang.split('');
+                    var shu = bb[0];
+                    for(var x = 1;x<min;a++){
+                        shu += bb[x];
+                    }
+                    shu = parseInt(shu);
+                    if(jia == min){//找第一个出现的运算符
+                        fuhao = '+';
+                    }
+                    if(jian == min){
+                        fuhao = '-';
+                    }
+                    if(cheng == min){
+                        fuhao = '*';
+                    }
+                    if(chu == min){
+                        fuhao = '/';
+                        rel += shu;
+                    }
+                }
+                switch(fuhao){
+                    case '+':
+                        n = bianliang.split("+");
+                        rel += parseInt(n[1]);
+                        bianliang = rel + bianliang.substring(3);
+                        break;
+                    case '-':
+                        n = bianliang.split("-");
+                        rel -= parseInt(n[1]);
+                        bianliang = rel + bianliang.substring(3);
+                        break;
+                    case '*':
+                        n = ed.split("*");
+                        rel *= parseInt(n[1]);
+                        bianliang = rel + bianliang.substring(3);
+                        break;
+                    case '/':
+                        n = ed.split("/");
+                        rel /= parseInt(n[1]);
+                        bianliang = rel + bianliang.substring(3);
+                        break;
+                }
+            }
+            $("#result").html(rel);
+        }
+        
+    }) 
+    //清零
+    $(":button").click(function(){
+        var a = $(this).val();
+        if(a == 'C'){
+            $("#result").html(0);
+        }
+    }) 
+</script>
+</html>

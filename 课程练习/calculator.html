@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calculator</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        body {
+            font:bolder 26px 楷体;
+        }
+        #result {
+            text-align:right;
+        }
+        table,td {
+            border:1px solid #C0C0C0;
+        }
+        td {
+            padding:10px;
+        }
+        button {
+            width:50px;
+            height:50px;
+        }
+        .shadowBut{
+            box-shadow: 3px 3px 3px #eee;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="3" id="result">
+                2
+            </td>
+            <td>
+                <button type="button" value="C">
+                    C
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="1" onclick="showData(this);">
+                    1
+                </button>
+            </td>
+            <td>
+                <button type="button" value="2">
+                    2
+                </button>
+            </td>
+            <td>
+                <button type="button" value="3">
+                    3
+                </button>
+            </td>
+            <td>
+                <button type="button" value="+">
+                    +
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="4">
+                    4
+                </button>
+            </td>
+            <td>
+                <button type="button" value="5">
+                    5
+                </button>
+            </td>
+            <td>
+                <button type="button" value="6">
+                    6
+                </button>
+            </td>
+            <td>
+                <button type="button" value="-">
+                    -
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="7">
+                    7
+                </button>
+            </td>
+            <td>
+                <button type="button" value="8">
+                    8
+                </button>
+            </td>
+            <td>
+                <button type="button" value="9">
+                    9
+                </button>
+            </td>
+            <td>
+                <button type="button" value="*">
+                    *
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" value="0">
+                    0
+                </button>
+            </td>
+            <td>
+                <button type="button" value=".">
+                    .
+                </button>
+            </td>
+            <td>
+                <button type="button" value="=">
+                    =
+                </button>
+            </td>
+            <td>
+                <button type="button" value="/">
+                    /
+                </button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+$(document).ready(function(){
+    //box-shadow阴影效果
+    $("button").mouseover(function(){
+        $(this).addClass('shadowBut')
+    }).mouseout(function(){
+        $(this).removeClass('shadowBut')
+    })
+    //计算
+    var a,len1,qian,fuHao,b,len2,hou,result=1;
+    $("button").click(function(){
+        var s = $(this).val();
+        var r = $("#result");
+        if(s == 'C')//归零
+            r.html(0);
+        else if(r.html() == 0){
+            r.html('');
+            r.html(r.html() + s);
+        }else{
+            r.html(r.html() + s);
+        }
+        //判断当前是否输入运算符
+        if(s=='+' || s=='-' || s=='*' || s=='/'){
+            a = r.html();
+            len1 = a.length;
+            qian = Number(a.substring(0,len1 - 1));
+            console.log(qian);
+            fuHao = s;
+            console.log(fuHao);
+        }
+        //判断是否输入=，需要计算
+        if(s == '='){
+            b = r.html();
+            len2 = b.length;
+            hou = Number(b.substring(len1,len2-1));
+            console.log(hou);
+            switch(fuHao){
+                case "+": result = qian + hou;break;
+                case "-": result = qian - hou;break;
+                case "*": result = qian * hou;break;
+                case "/": result = qian / hou;break;
+            }
+            if(String(result).indexOf(".") != -1)
+                r.html(result.toFixed(2));
+            else
+                r.html(result);
+        }
+    })
+})
+//存在问题：
+//一次运算结束后，再键入数字时，添加到结果的末尾
+</script>
+</html>

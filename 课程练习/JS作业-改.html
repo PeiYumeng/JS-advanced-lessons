@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            calculate
+        </title>
+        <meta http-equiv="Content-Type" content="text/html;charaset = utf-8" />
+        <style type="text/css">
+            body {
+                font:bolder 26px 楷体;
+            }
+            #result {
+                text-align:right;
+            }
+            table,td {
+                border:1px solid #C0C0C0;
+            }
+            td {
+                padding:10px;
+            }
+            button {
+                width:50px;
+                height:50px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <table>
+            <tr>
+                <td colspan="3" id="result">
+                    0
+                </td>
+                <td>
+                    <button type="button" value="C">
+                        C
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="1" >
+                        1
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="2">
+                        2
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="3">
+                        3
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="+">
+                        +
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="4">
+                        4
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="5">
+                        5
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="6">
+                        6
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="-">
+                        -
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="7">
+                        7
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="8">
+                        8
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="9">
+                        9
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="*">
+                        *
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" value="0">
+                        0
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value=".">
+                        .
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="=">
+                        =
+                    </button>
+                </td>
+                <td>
+                    <button type="button" value="/">
+                        /
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </body>
+    <script src = "jquery-3.4.1.min.js"></script>
+    <script>
+         //鼠标划上的时候有阴影效果
+        $(":button").mousemove(function(){
+            $(this).css("box-shadow","3px 3px 3px #eee");
+        })
+        $(":button").mouseout(function(){
+            $(this).css("box-shadow","0px 0px 0px #eee");
+        })
+        //清零
+        $(":button").click(function(){
+            var a = $(this).val();
+            if(a == 'C'){
+                $("#result").html(0);
+            }
+        }) 
+        //获得数字
+        $(":button").click(function(){
+            var a = $(this).val();
+                if(a!='C' && a!='+' && a!='-' && a!='*' && a!='/' && a!='='){
+                // console.log($("#result").html());//当前的 0
+                // console.log(a);//3
+                var ed = $("#result").html();//获得之前的字符串
+                if(ed == 0){
+                    r1 = parseInt(a);
+                    rel = r1;
+                    $("#result").html(a);
+                }
+                else{
+                    $("#result").html(ed+a);
+                }
+            }
+        })
+        //显示加减乘除
+        $(":button").click(function(){
+            var a = $(this).val();
+            var ed = $("#result").html();
+            if(a == '+'){
+                if(ed ){
+                    $("#result").html(ed+a);
+                }
+            }
+        })  
+        //减法
+        $(":button").click(function(){
+            var a = $(this).val();
+            var ed = $("#result").html();
+            if(a == '-'){
+                if(ed ){
+                    $("#result").html(ed+a);
+                }
+            }
+        })  
+        //乘法
+        $(":button").click(function(){
+            var a = $(this).val();
+            var ed = $("#result").html();
+            if(a == '*'){
+                if(ed ){
+                    $("#result").html(ed+a);
+                }
+            }
+        })  
+        //除法
+        $(":button").click(function(){
+            var a = $(this).val();
+            var ed = $("#result").html();
+            if(a == '/'){
+                if(ed ){
+                    $("#result").html(ed+a);
+                }
+            }
+        }) 
+         //基本运算
+        $(":button").click(function(){
+            var a = $(this).val();
+            var ed = $("#result").html();
+            if(a == '='){
+                var result = eval(ed)
+                if(String(result).indexOf(".") != -1)
+                    $("#result").html(result.toFixed(2));
+                else
+                    $("#result").html(result);
+            }    
+        }) 
+    </script>
+</html>

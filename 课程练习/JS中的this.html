@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    this取决于所在函数的调用主体
+*/
+function thisTest(){
+    "use strict";
+    console.log(this);
+    return this === undefined?true:false;
+}
+thisTexe();
+var point={
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            this.x=x;
+            this.y=y;
+        }
+    }
+   // 函数或者方法的内部指向，取决于该函数的调用主题
+
+function Point(x,y){
+    this.x = x;
+    this.y = y;
+    this.moveTo = function(x,y){
+        this.x = x;
+        this.y = y;
+    }
+}
+var p = new Point(10,10);
+p.moveTo(5,5);
+//函数内部的this指向取决于函数调用的主体是谁
+
+var objA = {name:"AA",x:1};
+var  objB = {name:"BB",x:2};
+function test(){
+    console.log(this.name,this.x);
+}
+objA.fun = test;
+objA.fun();
+//函数也是对象，叫做函数对象
+//函数对象的构造函数Function
+//函数对象.__proto__==Function.prototype
+//方法.call(函数调用主体对象，arg1,arg2)
+objA.fun.call(objB,"CC");
+
+var point = {
+    x:0,
+    y:0,
+    moveTo:function(x,y){
+        var that = this;//转存,软绑定
+        function moveToX(x){
+            //this.x = x;//多层嵌套时内部函数this指向全局对象，即window对象
+            that.x = x;
+        }
+        moveTo(x);
+    }
+}
+
+//切换函数或方法的调用主体，并且执行该方法
+var point = {
+    x:0,
+    y:0,
+    moveTo:function(x,y){
+        function moveToX(x){
+            that.x = x;
+        }
+        function moveToX(y){
+            that.y= y;
+        }
+        moveToX.call(this,x);
+        moveToX.call(this,y);
+    }
+}
+
+//硬绑定，bind
+var point ={
+    x:0,
+    y:0,
+    moveTo:function(x,y){
+        function moveToX(x){
+            this.x = x;
+        }
+        function moveToY(y){
+            this.y = y;
+        }
+        var fn1 = moveToX.bind(point, x);
+        fn1(x);
+        console.log(fn1);
+    }
+}
+point.moveTo
+</script>
+</html>

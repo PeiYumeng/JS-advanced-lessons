@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+  var newList = [
+        {"title":"勇士4:2火箭"},
+        {"title":"勇士4:2火箭"}
+    ];
+    var ulNode=document.getElementById("newslist");
+    for(var i;i<newsList.length;i++){
+        var liNode=document.createElement("li");
+        liNode.innerHTML=newsList[i]["title"];
+        ulNode.appendChile(liNode);
+    }
+    var jsonStr=JSON.stringify(newslist);
+    alert(jsonStr);
+    console.log(typeof jsonStr);
+    //JSON字符串
+    var jsObject = JSON.parse(jsonStr);
+    console.log(jsObject);
+    console.log(typeof jsObject);
+    /*
+        JSON.stringify(对象、数组)
+        将js对象或者数组转化为json字符串
+    */
+    /*
+        JSON.parse(json字符串)
+        将json字符串转化js对象的结构
+    */
+    //前端和后台一般都是用json字符串进行交互
+    var jsObject = {
+        "username":"zhangsan",
+        "age":20,
+        "address":{
+            "addName":"石家庄",
+            "addCode":"111222"
+        }
+    };
+    var jsonStr = JSON.stringify(jsObject,function(k,v){
+        if(typeof v == "number"){
+            return v*2;
+        }
+        return v;
+    })
+    var jsonStr = JSON.stringify(jsObject);
+    console.log(jsonStr);
+
+    /*
+        1.前后端的数据交互传输数据格式
+        2.作为数据存储的数据格式
+    */
+    
+</script>
+</html>

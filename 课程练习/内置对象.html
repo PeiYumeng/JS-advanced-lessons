@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function BaseClass(){
+
+    }
+    BaseClass.f1 = function(){
+        console.log("静态方法");
+    }
+    BaseClass.prototype.fn2 = function(){
+        console.log("原型方法");
+    }
+    BasClass.fn1();
+    var base = new BaseClass();
+    base.fn2();
+    /*静态方法：
+    */
+
+    function Foo(){
+
+    }
+    Foo.prototype.constructor == Foo;
+    var foo = new Foo();
+    foo.consturctor ==Foo;
+    //
+
+    //如果直接给构造函数的prototype属性赋值，会覆盖掉prototype上的constructor
+
+
+
+    var arr1 = [1,2,3,4];
+    var arr2 = arr1;
+    arr1[0] = 5;
+    console.log(arr2);
+
+    //稀疏数组
+    var arr1 = [,2,3,,5];
+    console.log(arr1.length);//5
+
+    Array.prototype.min = "扩展属性";
+    for(var i in arr1){
+
+    }
+
+    /*
+        内置对象方法：
+        1.确定使用的方法是构造函数的静态方法还是原型方法
+        2.查看MDN该方法相关定义、作用
+        3.查看该方法的相关参数
+            （1）如果包含了回调函数，还需要回调函数的相关参数
+            （2）哪些参数是必须的，哪些参数是可选的
+        4.该方法
+    */
+</script>
+</html>

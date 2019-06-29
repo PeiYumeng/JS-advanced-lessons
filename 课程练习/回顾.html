@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    立即执行函数
+        1.防止变量的污染
+        2.防止变量的非期望共享
+    */
+    (function(){
+
+    })()
+    for(var i=0;i<5;i++){
+        (function(j){
+            /*
+                1.时间的绑定回调函数里面
+                2.定时执行、延迟执行
+            */
+            //每次循环形成自己的独立作用域
+        })(i)
+    }
+
+    /*
+    闭包
+        1.可以访问函数内部的局部变量
+        2.可以让变量保持在内存中
+    */
+    function fn1(){
+        var x = 1;
+        function fn2(){
+            return ++x;
+        }
+        return fn2;
+    }
+    var result = fn1();
+    console.log(result());
+    console.log(result());
+
+    /*
+        Object.create()
+        Object.defineProperty()
+        Object.defineProperties()
+        Object.assgin()
+        Object,get
+    */
+
+</script>
+</html>

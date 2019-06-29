@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+       对象，包括原始类型值、对象、函数
+       是一种符合值，是若干无序属性的集合
+       当函数作为对象的一个属性时，称这个为该对象的方法
+    */
+    //创建JS对象
+    var obj = {
+        num:10,
+        str:"Hi",
+        show:function(){//方法
+            console.log(this.str);
+        }
+    };
+    console.log(obj.num);//10
+    console.log(obj.str);//Hi
+    obj.show();//Hi 
+    //练习：写一个JS对象，包括自己的姓名、年龄，和一个方法，调用这个方法
+    var obj2 = {
+        name:"xiaomeng",
+        age:20,
+        lala:function(){
+            console.log('hello world!!!!');
+        }
+    };
+    console.log(obj2.name,obj2.age,obj2.lala);//调用输出时，带括号输出的是调用的结果，即内容。不带括号返回的是函数
+    
+</script>
+</html>

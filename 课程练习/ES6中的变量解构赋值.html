@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //重在结构的模式匹配
+    let [, , third] = ["bar","foo","baz"];//前两个空的不考虑，然后把baz赋值到third里面去
+    console.log(third);
+    /*
+        进行两侧的模式匹配，然后完成对应位置上的变量赋值
+    */
+    let [head,...tail] = [1,2,3,4];
+    console.log(head,tail);//tail的结果是234，除了第一匹配到了剩下的都放在tail里
+    /*
+        ...剩余运算符
+    */
+    let {foo2,bar2} = {bar2:"bar2",foo2:"foo2"};
+    console.log(foo2,bar2);
+    //根据键名匹配变量，将键值赋值给对应变量
+    let{k1:v1,k2:v2} = {k1:"aaa",k2:"bbb"};
+    console.log(k1,v1);//k1报错 将aaa赋值给键值变量v1，k1只起匹配作用
+    console.log(v1,v2);
+    let [a,b,c,d] = "hello";
+    //直接将字符串中的字符提取出来赋值给变量，自动转换成对象
+    /*
+        如果富豪右侧的不是一个对象时，会转化成对象
+    */
+    let {toString:s} = 123;
+    console.log(s);
+    //首先将123转换成一个对象Number
+    console.log(s==Number.prototype.toString);
+    //适用于参数不固定或者比较复杂
+    function move2({x,y}={x:0,y:0}){
+        return [x,y];
+    }
+    console.log(move2({y:2,x:1}));
+    console.log(move2());
+    console.log(move2({}))
+   /*
+        函数参数的对象解构赋值，适用于
+        函数参数较多，解构较复杂的情况
+   */ 
+   let [x,y] = [1,2];
+   [y,x] = [x,y];
+   console.log(x,y);
+
+   function exmple(){
+       return [1,2,3];
+   }
+   let [a,b,c] = example();
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj = {x:1};
+    Object.defineProperty(obj,"y",{
+        writable:true,
+        enumerable:true,
+        configurable:true,
+        value:2
+    });
+
+    //获取对象属性特性
+    var obj = {x:5};
+    Object.defineProperty(obj,"y",{
+        configurable:false,
+        writable:false,
+        enumerable:true,
+        value:6
+    });
+    Object.getOwnPropertyDescriptor(obj,"x");
+
+    var o1 = {x:1};
+    var o2 = Object.create(o1);
+    console.log(o2);
+    console.log(o2.__proto__==o1);
+    console.log(o2.x);
+    o2.x = 2;//是往o2的自身属性上添加x
+    console.log(o2.x);//查找顺序是先从自身上开始查找，然后再在原型链上查找
+    //delete只能删除它自身上的属性
+    o2.__proto__.x = 3;
+    console.log(o1.x);
+    console.log(o2.x);
+    //都改，存储的是引用地址
+
+    var obj = {x:1};
+    console.log(obj.__proto__==Object.prototype);
+    console.log(obj.__proto__);
+    console.log(obj.__proto__.__proto);
+    //对象的原型链不是无尽的，尽头是Object.prototype.__proto__
+    //尽头是构造函数的原型
+
+    var proObj = {
+        z:3
+    };
+    var obj = Object.create(proObj);
+    obj.x=1;
+    obj.y=2;
+    console.log(obj.x);//1
+    console.log(obj.y);//2
+    console.log(obj.z);//3
+    //原型就是TRUE继承过来的就是FALSE
+    "z" in obj;
+    obj.hasOwnProperty("z");
+</script>
+</html>

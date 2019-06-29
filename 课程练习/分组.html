@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //用小括号包裹的规则内容，称之为分组
+    var reg1 = /(ss\d)a(\dxx)/gi;  //ss相当于reg1的一个分组,一个子规则
+    var str1 = "ss1a2xxbcdefg";
+    /*
+        reg.exec(str)  
+        如果是可以匹配的，则返回数字；如果不能匹配，则返回null
+        返回的数组结构  [整个正则匹配的内容，分组匹配的内容]
+    */
+
+    /*
+        String.prototype
+        var result = str.replace(正则表达式，替换成的内容)；
+        返回值result是被替换后的字符串
+        
+    */
+    /*
+        String.prototype
+            var result = str.replace(正则表达式，替换成的内容);  返回result替换后的数组
+            var result = str.match(正则表达式)； 返回值是result，如果匹配成功返回数组，如果匹配不成功，返回null
+            var result = str.search(正则表达式)； 返回值是匹配位置的起始索引值
+        RegExp.prototype
+            reg.test(str)；  验证字符串是否符合正则表达式的规则，符合返回true，不符合返回false
+            reg.exec(str)；  匹配返回的是数组，不匹配返回的是null    [整个正则匹配到的内容，分组匹配到的内容，index]
+    */
+
+    /*
+        ( .*)   .任意的一个字符 *表示前面的字符出现0次或多次
+        表示文件名字符出现0次或多次
+        (.+)
+        \. 对.做转义处理，匹配
+        如(rar|zip|7zi|tgz)任意取其中一个
+        ￥以前面的分组内容结尾
+    */
+
+    var reg2 = /^#[a-fA-F0-9]{6}$/;
+    //表示这个字符串必须以#开头
+    //[a-fA-F0-9] 从中括号集合中取任意一个字符
+    //{6}表示前面的字符出现6次
+    //$还是以前面的集合中的任一字符结尾
+</script>
+</html>

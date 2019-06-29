@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj = {
+        num:10,
+        str:"hello",
+        show:function(){
+            console.log(this.str);
+        }
+    }
+    var subObject = Object.create(obj);//将obj作为proto属性上的
+    console.log(subObject.__proto__==obj);//true
+    console.log(subObject);//空对象，对象中有proto为obj
+    console.log(subObject.num);
+    //先从自身找，再从proto上找，按原型链一级一级找
+    /*创建一个新对象，并且将obj对象作为新对象的__proto__*/
+
+    function Person(username,age){
+        this.username = username;
+        this.age = age;
+        this.sayHi = function(){
+            console.log(this.username);
+        }
+    }
+    var person1 = new Person("zhangsan",20);
+    var person2 = new Person("lsii",21);
+    console.log(person1.__proto__ == Person.prototype);
+    //公用sayhi方法
+
+    var obj = {x:1};
+    var z = "age";
+    obj.z = 20;
+    console.log(obj);
+    for(var i in obj){
+        console.log(i,obj[i]);
+    }
+
+    var objProto = {
+        z:3
+    }
+    var obj = Object.create(objProto);
+    obj.x=1;
+    obj.y=2;
+    console.log(obj.x);
+    console.log(obj.y);
+    console.log(obj.z);
+    console.log(obj.toString);
+    for(var i in obj){
+        console.log(i,obj[i]);
+    }
+
+    var obj = {x:1};
+    Objext.defineProperty(obj,"y",{
+        value:"2",
+        enumerable:false//枚举遍历
+    });
+    console.log(obj);
+    for(var i in obj){
+        console.log(i,obj[i]);
+    }
+    //configurable是否可配置，能否删除对象
+    //writable设置属性值
+    //不给配置项默认为false
+
+    Object.defineProperty(obj,"username",{
+        condiurable:true,
+        enumerable:true,
+        get(){
+            return this._username;
+        },
+        set(val){
+            this._username = val;
+        }
+    })
+    console.log(obj.username);
+</script>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let arr = ["hello","world"];
+    for(let j of arr){
+        cnosole.log(j);
+    }
+    //ES6提供的循环遍历，比for循环要快
+    let reg1 = /xyz/gi;
+    let reg2 = new RegExp(/xyz/gi);
+    let reg3 = new RegExp('xyz',"gi");
+    let reg4 = new RegExp(/xyz/gi);
+    /*
+        正则对象.flags 获取正则对象的修饰符
+    */
+    //sticky
+
+    //数组
+    /*
+        Array.from()
+        将类数组结构的变量转化为一个数组
+    */
+    console.log(Array.from("abcdef"));
+    function fn1(){
+        var a1= Array.from(arguments);//转换成数组
+        console.log(arr1);
+    }
+    fn1(1,2,3);
+    /*
+        Array.of() 
+        可以将一组值转化为数组的结构
+    */
+    console.log(Array.of(1,2,3));
+    let arr1 = [0,1,2,3,4,5];
+    arr1.copyWithin(0,3,4)//复制的目标位置，起始位置 输出【3,1,2,3,4,5】
+    arr1.copyWithin(0,3,5)//输出【3,4,2,3,4,5】
+    //prototype上的属性方法都是作用于具体函数的
+    /*
+        copyWithin(target,start,end)
+        复制的目标位置，复制的起始位置，复制的结束位置（不包含该位置）
+    */
+    /*
+        find()
+        查找符合特点条件的元素
+        并返回第一个符合条件的元素
+    */
+    let arr2 = [10,20,30,40,50];
+    arr2.find(function(element){
+        return element > 19;
+    })
+    //return false和true 如果符合验证条件就会出现该值，然后不管后面了，只管第一个符合条件的
+    console.log(el);
+    let elIndex = arr2.findIndex(function(element){
+        return element > 29;
+    })
+    console.log(elIndex);//返回的是索引值2
+    /*
+        findIndex()
+        返回符合条件的第一个元素的索引值
+    */
+    let arr3 = [1,2,3,4];
+    arr3.fill(0,0,3);//0,0,0,4
+    /*
+        keys() 获取到的是数组的索引
+        values() 获取到的是数组的元素值
+        includes() 是否包含元素
+    */
+
+    //对象
+    var username = "lily";
+    var person = {
+        username,
+        show(){
+            console.log(this.username);
+        }
+    }
+    let bar = "foo";
+    let obj = {
+        bar:"obj1"
+    }
+    console.log(obj.bar);
+    /*
+        如果属性名希望是个变量
+        [变量名]
+    */
+    /*
+        Object.is(value1,value2)
+        判断value1和value2是否相等
+        Object.assign()将多个对象进行合并
+    */
+    let target = {"username":"zhangsan"};
+    let source1 = {"age":20};
+    let source2 = {"sex":"male"};
+    Object.assign(target,source1,source2);//合并到target上
+    let obj1 = {"username":"zhangsan","age":20};
+    let values = Object.values(obj1);
+    for(let i of values){
+        console.log(i);
+    }
+    var obj = {
+        objNmae:"obj1",
+        showNmae:function(){
+            console.log(this);
+            var that = this;//转存this
+            setTimeout(()=>{//用箭头函数
+                console.log(this.objName);
+            },3000);
+        }
+    }
+    /*
+        存在函数嵌套，this指向不确定时，解决方案
+        1.通过that转存
+        2.bind绑定
+        3.apply call
+        4.箭头函数
+    */
+    function fn1(x, y = 2, z = 3){
+        return x+y+z;
+    }
+    fn1(1);//y,z有默认值  6
+    fn1(1,4);
+    fn1(1,4,6);
+    /*
+        带有默认值的参数默认是声明的，在函数内部不能再重复定义
+        带有默认值的参数需要写到没有默认值的参数后面
+    */
+    function fn1(x,...y){
+        console.log(x,y);
+    }
+    //剩余操作必须写在所有变量最后的位置
+    fn1(1,2,3,4,5);
+    function fn2(){
+        console.log(arguments);
+    }
+    fn2(1,...[2,3,4,5]);
+    fn2(1,2,3,4,5);
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj1 = {z:1};
+    var obj2 = Object.create(obj1);
+    console.log(obj2.__proto__==obj1);
+    obj2.z = 3;
+    delete obj2.z;
+    console.log(obj2.z);
+    //delete仅仅可以删除自身上的属性
+    delete obj2.z;
+    console.log(obj2.z);
+    obj2.hasOwnProperty('z');//判断是不是自身所有的属性
+    
+    var obj1 = {z:1};
+    var obj2 = Object.create(obj1);
+    Object.prototype.sayHello = function(){
+        console.log("hello world");
+    }
+    console.log(obj2.__proto__);
+    console.log(obj2.__proto__.proto__);
+    console.log(Object.prototype);
+    console.log(obj2.__proto__.__proto__.__proto__);//原型链的尽头null
+    //Object.prototypr.__proto__ == null说明原型链到头了
+
+</script>
+</html>
