@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //字面量
+    //标识符:由字母、下划线或$开头
+    //表达式
+
+    //ES5 ECMAScript 5 是一个标准语言JavaScript是完全基于ECMAScript实现的脚本语言
+	//ES5是简写
+	//当前主流版本是ES5和ES6
+    //ES5中没有块级作用域
+    //变量声明会提前到全局作用量
+    {
+    var a = 20;
+    }
+    console.log("大括号外依然能访问到a:",a);
+    //ES5中由严格模式和非严格模式（松散模式）
+    /*
+        严格模式目的：
+        - 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为
+        - 消除代码运行的一些不安全之处，保证代码运行的安全
+        - 提高编译器效率，增加运行速度
+    */
+   /*
+        方法：对整个脚本文本或针对函数使用
+        'use strict'
+   */
+    // 严格模式使用方式
+    "use strict"//全局使用
+
+    function foo() {
+        "use strict"//函数内部使用
+    }
+    //严格模式下全局变量需要显示声明
+    //非严格模式下的非显示声明
+    function fn2(){
+		username="lisi";
+	}
+	fn2();
+	console.log(username);
+	//没有var关键字声明，可以输出
+	//不显示的用var声明，则自动的提升为全局变量
+	//javascript较大缺陷就是全局变量的概念
+    //声明的范围全局试用，容易被覆盖并且查找效率慢
+    
+    //this
+	function fn3(){
+		console.log(this);
+	}
+	fn3();
+	//输出window全局对象，this指向全局对象
+	//在严格模式下
+	function fn4(){
+		'use strict'
+		console.log(this);
+	}
+	fn4();
+    //在非严格模式下，this指代全局变量window
+    //在严格模式下，this为undefined
+    //可以利用这个来判断是哪种模式
+    function judge(){
+		var result = (this === undefined?true:false);
+		return result;
+	}
+	if(judge()){
+		console.log("严格模式")
+	}
+	else{
+		console.log("非严格模式");
+    }
+    
+    //严格模式下禁止删除不可改变的属性和未定义的变量
+    //严格模式下严禁函数参数重名
+    function  strictFunc() {
+    'use strict';
+    console.log(Object.getOwnPropertyDescriptor(str,"length"));
+    str.length = 7;
+    console.log(str.length);
+    }
+    strictFunc();//报错
+
+    //严格模式下禁止删除未定义的变量
+    delete foo;
+    delete window.foo;
+    'use strict';
+    delete foo;
+    delete window.foo;
+
+    //严格模式下禁止函数参数重名
+
+    function f(a, a, b) {
+        return a+b;
+    }
+    f(2,3,4);//非严格模式下正常执行 7
+
+    "use strict";
+    function f(a, a, b) {
+        return a+b;
+    }
+    f(2,3,4);//严格模式下报错
+
+
+    //严格模式下的arguments，变与不变
+    function f(a){
+        "use strict";
+        a = 42;
+        return [a, arguments[0]];//数组拷贝了实参
+    }
+    var pair = f(17);
+    console.log(pair[0]);//console.assert(pair[0] === 42);
+    console.log(pair[1]);//console.assert(pair[1] === 17);
+
+    //switch...case
+    //case在比较时使用的是全等操作符比较,因此不会发生隐式类型转换
+    //穿透性：从满足第一case处开始执行，直到遇到break为止，若都没有break则直到default结束为止
+    var i = "1";
+    switch(i){
+        case 1:
+            console.log("case 1 Number");
+            break;
+        default:
+            console.log("default");
+    }
+    //输出default 而不是 case 1 Number
+    //会判断值也会判断类型
+    //结合考察
+    var j = new Number(23);
+    switch (j){
+        case 23:
+            console.log("case_111");
+            break;
+        case "23":
+            console.log("case_222");
+            break;
+        case new Number(23):
+            console.log("case_333");
+            break;
+        default:
+            console.log("case_default");
+    }//输出case_default,因为j是Number{23}，是Number实例化出来的一个对象
+    //new String("23")也是一样道理
+    var i = 65;
+    switch(new Boolean(true)){ //思考若是改为 switch(new Boolean(true)){ 会怎样
+        case i>=60:
+            alert('及格');
+            break;
+        case i<60:
+            alert('不及格');
+            break;
+        default:
+            alert('default');
+    }//default
+    
+    //for in常用来遍历对象或数组，遍历数组是会忽略空缺
+	//for in 遍历是对象的所有可枚举属性
+	//for in也可以遍历数组但是不推荐
+	var arr1 = [1,2,3];
+	console.log(Object(arr1));
+	for(var j in arr1){
+		console.log(j);
+	}
+</script>
+</html>
