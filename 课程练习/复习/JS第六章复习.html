@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        || 或运算 前面真了就可短路跳过
+        && 两边都真才真
+        || 两边都假才假
+    */
+   //demo练习14
+   //逻辑与、或的基本理解
+    console.log(2>1&&4<5);//ture
+    console.log(true&&(!2));//false
+    console.log(false&&("2" == 2));//false
+    "2" == 2//ture
+    console.log(false&&false);//false
+
+    console.log(2>1||4<5);//ture
+    console.log(true||(!2));//ture
+    console.log(false||("2" == 2));//ture
+    console.log(false||false);//false
+
+    //短路原则
+    /*
+        对于&&，转换后的左操作数若为true，则直接返回原始右操作数
+                        若为false则直接返回原始左操作数
+        对于| |，转换后的左操作数若为true，则直接返回原始左操作数
+                        若为false则直接返回原始右操作数
+    */
+    //（忽略右操作数的判断）
+   //操作数非布尔类型，&&短路原则
+   //全错。。。划重点！
+    console.log(2&&4);//4
+    console.log(0&&4);//0
+    console.log({x:2}&&{name:"Jack"});//{name:"Jack"}
+    console.log(null&&"hello");//null
+    console.log({}&&"world");//world
+
+    //操作数非布尔类型，||短路原则
+    console.log(2||4);//2
+    console.log(0||4);//4
+    console.log({x:2}||{name:"Jack"});//{x:2}
+    console.log(null||"hello");//hello
+    console.log({}||"world");//{}
+    //&&主要看左边是不是假，是就返回左边操作数，不是就返回右边的
+    //||主要看左边是不是真，是的话就直接返回左边的数
+
+    //思考 所有对象转换为布尔类型 都为 true
+    console.log((new Boolean(false))&&234);//234
+    console.log((new Boolean(false))||234);//Boolean(false)
+    //在应用中可以代替if else，并且小括号优先级更高
+    console.log((score>90&&"优")||(score>75&&"良")||(score>60&&"及格")||"不及格");
+    //可以用来设置函数默认参数值
+    var sum = function(a,b,c){
+        b = b||4;
+        c = c||5;
+        return a+b+c;
+    };
+    //优化改造版本
+    var sum = function(a,b,c){
+        if(b!=false){b = b||4;}//(b!=false)&&(b=b||4);
+        if(c!=false){c = c||5;}//(c!=false)&&(c=c||5);
+        return a+b+c;
+    };
+    //增加判断，确保实参转换为布尔类型时为true
+    //!!实现布尔类型转换
+</script>
+</html>
